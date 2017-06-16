@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Estados de Ruta{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Estados de Ruta</li>
+    </ol>
+    {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Estados de Ruta</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Código</th>
+                        <th>Descripción</th>
+                        <th>Asignación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr class='clickableRow' href="{{ path('estadosruta_show', { 'id': entity.id }) }}">
+                        <td>{% if entity.nombre %}{{ entity.nombre }}{% endif %}</td>
+                        <td>{% if entity.codigo %}{{ entity.codigo }}{% endif %}</td>
+                        <td>{% if entity.descripcion %}{{ entity.descripcion }}{% endif %}</td>
+                        <td>{% if entity.locked %}{{ 'Bloqueada' }}{% else %}{{ 'Desbloqueada' }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('estadosruta_new') }}"><span class="glyphicon glyphicon-file"></span> Nuevo</a>
+    </div>
+{% endblock %}

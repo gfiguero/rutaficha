@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Propiedades{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Propiedades</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Lista de Propiedades</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Calle</th>
+                        <th>Numero</th>
+                        <th>Complemento</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr class='clickableRow' href="{{ path('propiedades_show', { 'id': entity.id }) }}">
+                        <td>{{ entity.calle }}</td>
+                        <td>{{ entity.numero }}</td>
+                        <td>{{ entity.complemento }}</td>
+                        <td>{{ entity.rol }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('propiedades_new') }}"><span class="glyphicon glyphicon-file"></span> Nuevo</a>
+    </div>
+{% endblock %}

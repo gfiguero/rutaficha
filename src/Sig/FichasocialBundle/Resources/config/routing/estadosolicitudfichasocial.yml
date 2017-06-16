@@ -1,0 +1,30 @@
+estadossolicitudfichasocial:
+    path:     /{pagina}
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:index" , pagina: 1 }
+
+estadossolicitudfichasocial_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:show" }
+
+estadossolicitudfichasocial_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:new" }
+
+estadossolicitudfichasocial_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:create" }
+    requirements: { _method: post }
+
+estadossolicitudfichasocial_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:edit" }
+
+estadossolicitudfichasocial_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:update" }
+    requirements: { _method: post|put }
+
+estadossolicitudfichasocial_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:EstadoSolicitudFichaSocial:delete" }
+    requirements: { _method: post|delete }

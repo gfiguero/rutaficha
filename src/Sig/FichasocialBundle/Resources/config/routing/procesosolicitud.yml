@@ -1,0 +1,43 @@
+proceso_buscar:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:buscar" }
+
+proceso_persona_nueva:
+    path:     /personaNew
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:personaNew" }
+
+proceso_persona_crear:
+    path:     /personaCreate
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:personaCreate" }
+    requirements: { _method: post }
+
+proceso_persona_existente:
+    path:     /{id}/personaEdit
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:personaEdit" }
+
+proceso_persona_actualizar:
+    path:     /{id}/personaUpdate
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:personaUpdate" }
+    requirements: { _method: post|put }
+
+proceso_domicilio:
+    path:     /{id}/domicilio
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:domicilio" }
+
+proceso_domicilio_actualizar:
+    path:     /{id}/domicilioUpdate
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:domicilioUpdate" }
+    requirements: { _method: post|put }
+
+proceso_solicitud:
+    path:     /{id}/solicitud
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:solicitud" }
+
+proceso_solicitud_ingresar:
+    path:     /{id}/solicitudIngresar
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:solicitudIngresar" }
+    requirements: { _method: post|put }
+
+proceso_finalizar:
+    path:     /{id}/finalizar
+    defaults: { _controller: "SigFichasocialBundle:ProcesoSolicitud:finalizar" }

@@ -1,0 +1,30 @@
+historialpersonausuario:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:index" }
+
+historialpersonausuario_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:show" }
+
+historialpersonausuario_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:new" }
+
+historialpersonausuario_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:create" }
+    requirements: { _method: post }
+
+historialpersonausuario_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:edit" }
+
+historialpersonausuario_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:update" }
+    requirements: { _method: post|put }
+
+historialpersonausuario_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:HistorialPersonaUsuario:delete" }
+    requirements: { _method: post|delete }

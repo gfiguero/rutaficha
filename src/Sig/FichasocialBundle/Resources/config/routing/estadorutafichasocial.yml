@@ -1,0 +1,30 @@
+estadosruta:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:index" }
+
+estadosruta_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:show" }
+
+estadosruta_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:new" }
+
+estadosruta_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:create" }
+    requirements: { _method: post }
+
+estadosruta_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:edit" }
+
+estadosruta_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:update" }
+    requirements: { _method: post|put }
+
+estadosruta_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:EstadoRutaFichaSocial:delete" }
+    requirements: { _method: post|delete }

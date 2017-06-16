@@ -1,0 +1,52 @@
+Sig\FichasocialBundle\Entity\Propiedad:
+    type: entity
+    table: Propiedad
+    repositoryClass: Sig\FichasocialBundle\Repository\PropiedadRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    indexes:
+        name_index:
+            columns: [ calle, numero, complemento, rol ]
+    fields:
+        calle:
+            type: string
+            length: '100'
+        numero:
+            type: integer
+            length: null
+        complemento:
+            type: string
+            length: '100'
+            nullable: true
+        rol:
+            type: string
+            length: '20'
+            unique: true
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            nullable: true
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    manyToOne:
+        calle_id:
+            targetEntity: Calle
+            joinColumn:
+                name: calle_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Ficha Social - {% block title %}{% endblock %}</title>
+
+        {% block iexplorer %}{% endblock %}
+
+        {% block stylesheet %}{% endblock %}
+
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+    </head>
+
+    <body>
+
+        {% block navigation %}{% endblock %}
+
+        {% block header %}{% endblock %}
+
+        {% block main %}{% endblock %}
+
+        {% block footer %}{% endblock %}
+
+        {% block javascript %}{% endblock %}
+
+    </body>
+</html>

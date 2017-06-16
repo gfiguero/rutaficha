@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Direccion{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('direcciones') }}">Direccion</a></li>
+        <li><a href="{{ path('direcciones_show', { 'id': entity.id }) }}">Ver Direccion</a></li>
+        <li class="active">Editar Direccion</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Direccion ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

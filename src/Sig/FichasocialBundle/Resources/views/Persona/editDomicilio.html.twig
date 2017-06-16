@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Persona{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('personas') }}">Persona</a></li>
+        <li><a href="{{ path('personas_show', { 'id': entity.id }) }}">Ver Persona</a></li>
+        <li><a href="{{ path('personas_edit', { 'id': entity.id }) }}">Editar Persona</a></li>
+        <li class="active">Editar Domicilio</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Domicilio Persona ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

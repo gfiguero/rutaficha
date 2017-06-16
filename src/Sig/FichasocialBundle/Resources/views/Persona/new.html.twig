@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Persona{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('personas') }}">Persona</a></li>
+        <li class="active">Nueva Persona</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Nueva Persona</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

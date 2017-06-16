@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Ruta{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Ruta N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Fecha de Creación:</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Última Actualización:</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Estado:</dt><dd>{{ entity.estado.nombre }}</dd>
+                <dt>Encuestador:</dt><dd>{% if entity.encuestador %}<a href="{{ path('encuestadores_show', { 'id': entity.encuestador.id }) }}">{{ entity.encuestador.nombrecompleto }}</a>{% else %}No tiene encuestador asignado{% endif %}</dd>
+                <dt>N° Solicitudes:</dt><dd>{% if entity.solicitudes.count %}{{ entity.solicitudes.count}}{% else %}No hay solicitudes asignadas a la ruta{% endif %}</dd>  
+            </dl>
+        </div>
+        {% if entity.solicitudes.count %}
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Solicitante</th>
+                        <th>Fecha de Registro</th>
+                        <th>Tipo</th>
+                        <th>Poblacion</th>
+                        <th>Domicilio</th>
+                        <th>Unidad Vecinal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for solicitud in solicitudes %}
+                    <tr class='clickableRow' href="{{ path('solicitudesfichasocial_show', { 'id': solicitud.id }) }}">
+                        <td>{% if solicitud.persona %}{{ solicitud.persona.primernombre }} {{ solicitud.persona.primerapellido }}{% endif %}</td>
+                        <td>{% if solicitud.createdAt %}{{ solicitud.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        <td>{% if solicitud.tipo %}{{ solicitud.tipo.nombre }}{% endif %}</td>
+                        <td>{% if solicitud.domicilio %}{% if solicitud.domicilio.poblacion %}{{ solicitud.domicilio.poblacion}}{% endif %}{% endif %}</td>
+                        <td>
+                            {% if solicitud.domicilio %}
+                                {% if solicitud.domicilio.calle %}{{ solicitud.domicilio.calle }}{% endif %}
+                                {% if solicitud.domicilio.numero %} {{ solicitud.domicilio.numero }}{% endif %}
+                                {% if solicitud.domicilio.edificio %} {{ solicitud.domicilio.edificio }}{% endif %}
+                                {% if solicitud.domicilio.departamento %} {{ solicitud.domicilio.departamento }}{% endif %}
+                                {% if solicitud.domicilio.casa %} {{ solicitud.domicilio.casa }}{% endif %}
+                                {% if solicitud.domicilio.chacra %} {{ solicitud.domicilio.chacra }}{% endif %}
+                                {% if solicitud.domicilio.parcela %} {{ solicitud.domicilio.parcela }}{% endif %}
+                                {% if solicitud.domicilio.paradero %} {{ solicitud.domicilio.paradero }}{% endif %}
+                                {% if solicitud.domicilio.sector %} {{ solicitud.domicilio.sector }}{% endif %}
+                            {% endif %}
+                        </td>
+                        <td>{% if solicitud.domicilio %}{% if solicitud.domicilio.unidad %}{{ solicitud.domicilio.unidad}}{% endif %}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

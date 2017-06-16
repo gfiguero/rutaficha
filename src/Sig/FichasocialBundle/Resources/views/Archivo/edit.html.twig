@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Archivo{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('archivos') }}">Archivos</a></li>
+        <li><a href="{{ path('archivos_show', { 'id': entity.id }) }}">Ver Archivo</a></li>
+        <li class="active">Editar Archivo</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Archivo ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+solicitudesfichasocial:
+    path:     /{codigo}/status/{pagina}/pagina
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:index", codigo: 'S00', pagina: 1 }
+
+solicitudesfichasocial_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:show" }
+
+solicitudesfichasocial_new:
+    path:     /new/{personaId}
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:new" }
+
+solicitudesfichasocial_create:
+    path:     /create/{personaId}
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:create" }
+    requirements: { _method: post }
+
+solicitudesfichasocial_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:edit" }
+
+solicitudesfichasocial_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:update" }
+    requirements: { _method: post|put }
+
+solicitudesfichasocial_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:delete" }
+    requirements: { _method: post|delete }
+
+solicitudesfichasocial_conclude:
+    path:     /{id}/conclude
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:conclude" }
+
+solicitudesfichasocial_finnish:
+    path:     /{id}/finnish
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:finnish" }
+    requirements: { _method: post|put }
+
+solicitudesfichasocial_foil:
+    path:     /{id}/foil
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:foil" }
+
+solicitudesfichasocial_file:
+    path:     /{id}/file
+    defaults: { _controller: "SigFichasocialBundle:SolicitudFichaSocial:file" }
+    requirements: { _method: post|put }

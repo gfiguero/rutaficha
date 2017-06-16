@@ -1,0 +1,119 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Persona{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('personas') }}">Persona</a></li>
+        <li class="active">Ver Persona</li>
+    </ol>
+    {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Datos Personales</h1>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <legend>Datos Personales</legend>
+                <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                    <dt>Rut</dt><dd>{{ entity.rut }}</dd>
+                    <dt>Nombre</dt><dd>{{ entity.primernombre }} {{ entity.segundonombre }} {{ entity.primerapellido }} {{ entity.segundoapellido }}</dd>
+                    <dt>Fecha de Registro</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                    <dt>Ultima Actualización</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                </dl>
+            </fieldset>
+            {% if domicilio %} 
+                <fieldset>
+                    <legend>Domicilio Actual</legend>
+                    <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                        <dt>Rol</dt><dd>{{ domicilio.rol }}</dd>
+                        <dt>Calle</dt><dd>{{ domicilio.calle }}</dd>
+                        <dt>Número</dt><dd>{{ domicilio.numero }}</dd>
+                    </dl>
+                </fieldset>
+            {% endif %}
+            <div class="btn-group-lg pull-right">
+                <a class="btn btn-primary" href="{{ path('personas_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar Datos Personales</a>
+                <a class="btn btn-primary" href="{{ path('domicilios_new', { 'personaId': entity.id }) }}"><span class="glyphicon glyphicon-home"></span> Nuevo Domicilio</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Solicitudes Ingresadas</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Domicilio</th>
+                        <th>Fecha de Registro</th>
+                        <th>Última Actualización</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for solicitud in solicitudes %}
+                    <tr class='clickableRow' href="{{ path('solicitudesfichasocial_show', { 'id': solicitud.id }) }}">
+                        <td>{{ solicitud.domicilio.calle }}, {{ solicitud.domicilio.numero }}</td>
+                        <td>{% if solicitud.createdAt %}{{ solicitud.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        <td>{% if solicitud.updatedAt %}{{ solicitud.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        <td>{% if solicitud.estado %}{{ solicitud.estado.codigo }} - {{ solicitud.estado.nombre }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-body">
+        {% if domicilio %} 
+            <div class="btn-group-lg pull-right">
+                <a class="btn btn-primary" href="{{ path('solicitudesfichasocial_new', { 'personaId': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Nueva Solicitud</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+  {#}  <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Historial</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Evento</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for evento in eventos %}
+                    <tr>
+                        <td>{% if evento.tipo %}{{ evento.tipo.nombre }}{% endif %}</td>
+                        <td>{% if evento.usuario %}{{ evento.usuario.primerNombre }}{% endif %}</td>
+                        <td>{% if evento.createdAt %}{{ evento.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>#}
+    
+{#
+    <div class="col-lg-4 panelRight">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Domicilio {{ domicilio.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <div class="btn-group-lg pull-right">
+            </div>
+        </div>
+    </div>
+    </div>
+#}
+{% endblock %}

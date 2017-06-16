@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Tipo de Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('tipossolicitudfichasocial') }}">Tipo de Solicitud</a></li>
+        <li><a href="{{ path('tipossolicitudfichasocial_show', { 'id': entity.id }) }}">Ver Tipo de Solicitud</a></li>
+        <li class="active">Editar Tipo de Solicitud</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Tipo de Solicitud N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

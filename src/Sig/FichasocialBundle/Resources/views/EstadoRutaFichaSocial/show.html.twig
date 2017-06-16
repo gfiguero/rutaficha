@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Estados de Ruta{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('estadosruta') }}">Estados de Ruta</a></li>
+        <li class="active">Ver Estado de Ruta</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Estado de Ruta - Código: {{ entity.codigo }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Nombre</dt><dd>{{ entity.nombre }}</dd>
+                <dt>Código</dt><dd>{{ entity.codigo }}</dd>
+                <dt>Descripción</dt><dd>{{ entity.descripcion }}</dd>
+                <dt>Asignación de Solicitudes</dt><dd>{% if entity.locked %}{{ 'Bloqueada' }}{% else %}{{ 'Disponible' }}{% endif %}</dd>
+                <dt>Fecha de Registro</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Última Actualización</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+            </dl>
+        </div>
+    </div>
+    
+{% endblock %}
+{% block actionbar %}
+    <div class="col-xs-12">
+        <div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('estadosruta_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+        </div>
+    </div> 
+{% endblock %}

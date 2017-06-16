@@ -1,0 +1,30 @@
+eventossolicitud:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:index" }
+
+eventossolicitud_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:show" }
+
+eventossolicitud_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:new" }
+
+eventossolicitud_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:create" }
+    requirements: { _method: post }
+
+eventossolicitud_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:edit" }
+
+eventossolicitud_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:update" }
+    requirements: { _method: post|put }
+
+eventossolicitud_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:EventoSolicitud:delete" }
+    requirements: { _method: post|delete }

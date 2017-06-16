@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}TipoEvento{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('tiposevento') }}">TipoEvento</a></li>
+        <li class="active">Nuevo TipoEvento</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Nuevo TipoEvento</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

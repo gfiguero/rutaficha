@@ -1,0 +1,30 @@
+direcciones:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:Direccion:index" }
+
+direcciones_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:Direccion:show" }
+
+direcciones_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:Direccion:new" }
+
+direcciones_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:Direccion:create" }
+    requirements: { _method: post }
+
+direcciones_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:Direccion:edit" }
+
+direcciones_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:Direccion:update" }
+    requirements: { _method: post|put }
+
+direcciones_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:Direccion:delete" }
+    requirements: { _method: post|delete }

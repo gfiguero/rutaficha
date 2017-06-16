@@ -1,0 +1,71 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Ruta{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('rutas') }}">Rutas</a></li>
+        <li class="active">Nueva Ruta</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Nueva Ruta</h1>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form, { 'style': 'horizontal' }) }}
+            {#{ form_row(form.estado) }#}
+            {#{{ form_row(form.encuestador) }}#}
+            <div class="form-group">
+                {{ form_label(form.solicitudes) }}
+                <div class="col-lg-10">
+                     <table class="records_list table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Solicitante</th>
+                                <th>Fecha de Registro</th>
+                                {#<th>Estado</th>#}
+                                <th>Tipo</th>
+                                <th>Domicilio</th>
+                                <th>Unidad Vecinal</th>
+                                <th>Seleccionado</th>
+                            </tr>
+                        </thead>
+                        {% for child in form.solicitudes %}
+                            {% set index = child.vars.value %}
+                            <tbody>
+                            <tr>
+                                <td>{% if choices[index].persona %}{{ choices[index].persona.primerNombre }} {{ choices[index].persona.primerApellido }}{% endif %}</td>
+                                <td>{% if choices[index].createdAt %}{{ choices[index].createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                                {#<td>{% if choices[index].estado %}{{ choices[index].estado.codigo }} - {{ choices[index].estado.nombre }}{% endif %}</td>#}
+                                <td>{% if choices[index].tipo %}{{ choices[index].tipo.nombre }}{% endif %}</td>
+                                <td>{% if choices[index].domicilio %}{{ choices[index].domicilio.calle }}, {{ choices[index].domicilio.numero }}{% endif %}</td>
+                                <td>{% if choices[index].domicilio.unidad %}{{ choices[index].domicilio.unidad }}{% endif %}</td>
+                                <td>{{ form_widget(child) }}</td>       
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    {#<table class="records_list table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Seleccionado</th>
+                                <th>Solicitante</th>
+                                <th>Domicilio</th>
+                            </tr>
+                        </thead>
+                        {% for child in form.solicitudes %}
+                            {% set index = child.vars.value %}
+                            <tbody>
+                            <tr>
+                                <td>{{ form_widget(child) }}</td>       
+                                <td>{{ choices[index].persona.primerNombre }} {{ choices[index].persona.primerApellido }}</td>
+                                <td>{{ choices[index].domicilio.calle }}, {{ choices[index].domicilio.numero }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>#}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        </div>
+    </div>
+{% endblock %}

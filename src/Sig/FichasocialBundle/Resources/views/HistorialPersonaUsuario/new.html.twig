@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}HistorialPersonaUsuario{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('historialpersonausuario') }}">HistorialPersonaUsuario</a></li>
+        <li class="active">Nuevo HistorialPersonaUsuario</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Nuevo HistorialPersonaUsuario</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

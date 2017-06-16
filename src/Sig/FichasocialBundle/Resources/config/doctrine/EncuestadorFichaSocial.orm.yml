@@ -1,0 +1,50 @@
+Sig\FichasocialBundle\Entity\EncuestadorFichaSocial:
+    type: entity
+    table: EncuestadorFichaSocial
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        rut:
+            type: string
+            length: '15'
+            unique: true
+        primer_nombre:
+            type: string
+            length: '100'
+        segundo_nombre:
+            type: string
+            length: '100'
+        primer_apellido:
+            type: string
+            length: '100'
+        segundo_apellido:
+            type: string
+            length: '100'
+        email:
+            type: string
+            length: '100'
+        celular:
+            type: string
+            length: '100'
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            nullable: true
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    lifecycleCallbacks: {  }

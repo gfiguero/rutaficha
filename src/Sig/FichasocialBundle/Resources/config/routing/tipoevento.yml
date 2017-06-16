@@ -1,0 +1,30 @@
+tiposevento:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:index" }
+
+tiposevento_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:show" }
+
+tiposevento_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:new" }
+
+tiposevento_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:create" }
+    requirements: { _method: post }
+
+tiposevento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:edit" }
+
+tiposevento_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:update" }
+    requirements: { _method: post|put }
+
+tiposevento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:TipoEvento:delete" }
+    requirements: { _method: post|delete }

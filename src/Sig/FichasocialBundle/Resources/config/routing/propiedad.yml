@@ -1,0 +1,38 @@
+propiedades:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:index" }
+
+propiedades_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:show" }
+
+propiedades_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:new" }
+
+propiedades_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:create" }
+    requirements: { _method: post }
+
+propiedades_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:edit" }
+
+propiedades_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:update" }
+    requirements: { _method: post|put }
+
+propiedades_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:delete" }
+    requirements: { _method: post|delete }
+
+propiedades_search:
+    path:     /search
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:search" }
+
+propiedades_get:
+    path:     /get
+    defaults: { _controller: "SigFichasocialBundle:Propiedad:get" }

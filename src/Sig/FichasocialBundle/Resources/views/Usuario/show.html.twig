@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('usuarios') }}">Usuario</a></li>
+        <li class="active">Ver Usuario</li>
+    </ol>
+    {% for flashMessage in app.session.flashbag.get('noticia') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Usuario ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Nombre de usuario</dt><dd>{{ entity.username }}</dd>
+                <dt>Nombre Completo</dt><dd>{{ entity.primernombre }} {{ entity.segundonombre }} {{ entity.primerapellido }} {{ entity.segundoapellido }}</dd>
+                <dt>Email</dt><dd>{{ entity.email }}</dd>
+                <dt>Telefono</dt><dd>{{ entity.telefono }}</dd>
+                <dt>Fecha de Registro</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Último Ingreso</dt><dd>{% if entity.lastlogin %}{{ entity.lastlogin|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}{% endif %}</dd>
+            </dl>
+        </div>
+    </div>
+{#}
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('usuarios_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    </div>
+{#}
+{% endblock %}
+{% block actionbar %}
+    <div class="col-xs-12">
+        <div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('usuarios_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar información personal</a>
+            <a class="btn btn-primary" href="{{ path('usuarios_password', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-lock"></span> Cambiar Password</a>
+        </div>
+    </div> 
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Tipo de Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('tipossolicitudfichasocial') }}">Tipo de Solicitud</a></li>
+        <li class="active">Ver Tipo de Solicitud</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Tipo de Solicitud N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Nombre</dt><dd>{{ entity.nombre }}</dd>
+                <dt>Fecha de Registro</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Última Actualización</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+            </dl>
+        </div>
+    </div>
+    
+{% endblock %}
+{% block actionbar %}
+    <div class="col-xs-12">
+        <div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('tipossolicitudfichasocial_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+        </div>
+    </div> 
+{% endblock %}

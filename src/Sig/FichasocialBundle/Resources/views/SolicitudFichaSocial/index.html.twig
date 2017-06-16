@@ -1,0 +1,129 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Solicitudes</li>
+    </ol>
+
+    </div>
+
+    <div class="col-sm-3  col-lg-2">
+
+        <div class="btn-group btn-group-justified" role="group" style="margin-bottom: 10px;">
+            <a type="button" class="btn btn-success btn-lg" href="{{ path('proceso_buscar') }}">Nueva Solicitud</a>
+        </div>
+
+        <ul class="nav nav-pills nav-stacked">
+            <li {% if 'S00' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'S00' }) }}">Nuevas</a></li>
+            {#<li {% if 'S02' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'S02' }) }}">En ruta</a></li>#}
+            <li {% if 'S01' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'S01' }) }}">En ruta</a></li>
+            <li {% if 'S05' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'S05' }) }}">En Proceso</a></li>
+            {#<li {% if 'P14' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'P14' }) }}">En Proceso</a></li>#}
+            <li {% if 'S10' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'S10' }) }}">Procesadas</a></li>
+            <li {% if 'ALL' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('solicitudesfichasocial', { 'codigo': 'ALL' }) }}">Todas</a></li>
+        </ul>
+    </div>
+
+{#}
+    <div>
+        <div class="btn-group btn-group-vertical" role="group" aria-label="...">
+            <a type="button" class="btn btn-default">Bandeja de Salida</a>
+            <a type="button" class="btn btn-default">En ruta</a>
+            <a type="button" class="btn btn-default">Recepción</a>
+            <a type="button" class="btn btn-default">Terminada</a>
+        </div>
+    </div>
+{#}
+    <div class="col-sm-9 col-lg-10">
+
+        {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>Solicitudes
+                    {% if 'S00' in app.request.attributes.get('codigo') %}nuevas (aun no son asignadas a ruta){% endif %}
+                    {#% if 'S02' in app.request.attributes.get('codigo') %}en ruta{% endif %#}
+                    {% if 'S01' in app.request.attributes.get('codigo') %}en ruta (aun no se obtiene respuesta){% endif %}
+                    {% if 'S05' in app.request.attributes.get('codigo') %}en proceso (solicitudes con respuesta P14){% endif %}
+                    {#{% if 'P14' in app.request.attributes.get('codigo') %}en proceso{% endif %}#}
+                    {% if 'S10' in app.request.attributes.get('codigo') %}procesadas (nuevas al sistema con folio){% endif %}
+                </h1>
+                {% if not pagination|length %}
+                    <h5>
+                        No hay solicitudes 
+                        {% if 'S00' in app.request.attributes.get('codigo') %}nuevas. {% endif %}
+                        {% if 'S01' in app.request.attributes.get('codigo') %}en ruta. {% endif %}
+                        {% if 'S05' in app.request.attributes.get('codigo') %}en proceso. {% endif %}
+                        {#{% if 'P14' in app.request.attributes.get('codigo') %}en proceso. {% endif %}#}
+                        {% if 'S10' in app.request.attributes.get('codigo') %}procesadas. {% endif %}
+                    <h5>
+                {% endif %}
+            </div>
+            <div class="table-responsive">
+                {% if pagination|length %}
+                    <table class="records_list table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Solicitante</th>
+                                {% if 'S00' not in app.request.attributes.get('codigo') %}<th>Ruta</th>{% endif %}
+                                {% if 'S00' in app.request.attributes.get('codigo') %}<th>Domicilio</th>{% endif %}
+                                <th>Unidad</th>
+                                <th>Fecha</th>
+                                {#<th>Última Actualización</th>#}
+                                {#<th>Estado</th>#}
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in pagination %}
+                            <tr class='clickableRow' href="{{ path('solicitudesfichasocial_show', { 'id': entity.id }) }}">
+                                <td>{% if entity.id %}{{ entity.id }}{% endif %}</td>
+                                <td>
+                                    {% if entity.persona.primernombre %}{{ entity.persona.primernombre }}{% endif %}
+                                    {% if entity.persona.primerapellido %}{{ entity.persona.primerapellido }}{% endif %}
+                                </td>
+                                {% if 'S00' not in app.request.attributes.get('codigo') %}<td>{% if entity.ruta %}{{ entity.ruta.id }}{% endif %}</td>{% endif %}
+                                {% if 'S00' in app.request.attributes.get('codigo') %}
+                                <td>{% if entity.domicilio.calle %}{{ entity.domicilio.calle }}{% endif %}
+                                    {% if entity.domicilio.numero %} {{ entity.domicilio.numero }}{% endif %}
+                                    {% if entity.domicilio.poblacion %} {{ entity.domicilio.poblacion }}{% endif %}
+                                    {% if entity.domicilio.edificio %} {{ entity.domicilio.edificio }}{% endif %}
+                                    {% if entity.domicilio.departamento %} {{ entity.domicilio.departamento }}{% endif %}
+                                    {% if entity.domicilio.casa %} {{ entity.domicilio.casa }}{% endif %}  
+                                    {% if entity.domicilio.chacra %} {{ entity.domicilio.chacra }}{% endif %}
+                                    {% if entity.domicilio.parcela %} {{ entity.domicilio.parcela }}{% endif %}
+                                    {% if entity.domicilio.paradero %} {{ entity.domicilio.paradero }}{% endif %}
+                                    {% if entity.domicilio.sector %} {{ entity.domicilio.sector }}{% endif %}
+                                    {#{% if entity.domicilio.rol %},{{ entity.domicilio.rol }} {% endif %}#}
+                                </td>
+                                {% endif %}
+                                <td>{% if entity.domicilio.unidad %}{{ entity.domicilio.unidad }}{% endif %}</td> 
+                                <td>{% if entity.createdAt %}{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y HH:mm") }}{% endif %}</td>
+                                {#<td>{% if entity.updatedAt %}{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>#}
+                                {#<td>{% if entity.estado %}{{ entity.estado.codigo }} - {{ entity.estado.nombre }}{% endif %}</td>#}
+                                <td>{% if entity.tipo %}{{ entity.tipo.nombre }}{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+            <div class="panel-footer">
+                <div class="pull-right">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}EventoPersona{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('eventospersona') }}">EventoPersona</a></li>
+        <li><a href="{{ path('eventospersona_show', { 'id': entity.id }) }}">Ver EventoPersona</a></li>
+        <li class="active">Editar EventoPersona</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar EventoPersona ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

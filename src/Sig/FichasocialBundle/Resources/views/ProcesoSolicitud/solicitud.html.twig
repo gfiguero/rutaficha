@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Confirmación de solicitud{% endblock %}
+
+{% block stylesheetExtra %}
+    <link href="{{ asset('css/bs-wizard.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body -%}
+
+    <div class="row bs-wizard" style="border-bottom:0;">
+        
+        <div class="col-xs-3 bs-wizard-step complete">
+          <div class="text-center bs-wizard-stepnum">Paso 1</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="{{ path('proceso_buscar') }}" class="bs-wizard-dot"></a>
+          <div class="bs-wizard-info text-center">Buscar persona</div>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step complete">
+          <div class="text-center bs-wizard-stepnum">Paso 2</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="{{ path('proceso_persona_existente', { 'id': persona.id }) }}" class="bs-wizard-dot"></a>
+          <div class="bs-wizard-info text-center">Ingresar información personal</div>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step complete">
+          <div class="text-center bs-wizard-stepnum">Paso 3</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="{{ path('proceso_domicilio', { 'id': persona.id }) }}" class="bs-wizard-dot"></a>
+          <div class="bs-wizard-info text-center">Ingresar domicilio</div>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step active">
+          <div class="text-center bs-wizard-stepnum">Paso 4</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <div class="bs-wizard-dot"></div>
+          <div class="bs-wizard-info text-center">Confirmación de solicitud</div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Confirmación de solicitud</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Rut</dt><dd>{{ persona.rut }}</dd>
+                <dt>Nombre completo</dt><dd>
+                    {% if persona.primernombre %}{{ persona.primernombre }} {% endif %}
+                    {% if persona.segundonombre %}{{ persona.segundonombre }} {% endif %}
+                    {% if persona.primerapellido %}{{ persona.primerapellido }} {% endif %}
+                    {% if persona.segundoapellido %}{{ persona.segundoapellido }} {% endif %}</dd>
+                <dt>Último domicilio registrado</dt><dd>
+                    {% if domicilio.calle %}{{ domicilio.calle }} {% endif %}
+                    {% if domicilio.numero %}{{ domicilio.numero }}, {% endif %}
+                    {% if domicilio.poblacion %}{{ domicilio.poblacion }}, {% endif %}
+                    {% if domicilio.edificio %}{{ domicilio.edificio }}, {% endif %}
+                    {% if domicilio.departamento %}{{ domicilio.departamento }}, {% endif %}
+                    {% if domicilio.casa %}{{ domicilio.casa }}, {% endif %}
+                    {% if domicilio.chacra %}{{ domicilio.chacra }}, {% endif %}
+                    {% if domicilio.parcela %}{{ domicilio.parcela }}, {% endif %}
+                    {% if domicilio.paradero %}{{ domicilio.paradero }}, {% endif %}
+                    {% if domicilio.sector %}{{ domicilio.sector }}, {% endif %}
+                    {% if domicilio.rol %}{{ domicilio.rol }} {% endif %}</dd>
+            </dl>
+            {{ form(solicitudForm) }}
+        </div>
+    </div>
+{#}
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('proceso_domicilio', {'id': 0}) }}"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+        <a class="btn btn-primary" href="{{ path('personas') }}"><span class="glyphicon glyphicon-ok"></span> Finalizar</a>
+    </div>
+{#}
+{% endblock %}

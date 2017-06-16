@@ -1,0 +1,42 @@
+Sig\FichasocialBundle\Entity\Direccion:
+    type: entity
+    table: Direccion
+    #repositoryClass: Sig\FichasocialBundle\Repository\DireccionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    indexes:
+        name_index:
+            columns: [ calle, numero, rol ]
+    fields:
+        calle:
+            type: string
+            length: '100'
+        numero:
+            type: integer
+            length: null
+        rol:
+            type: string
+            length: '20'
+            unique: true
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            nullable: true
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    lifecycleCallbacks: {  }

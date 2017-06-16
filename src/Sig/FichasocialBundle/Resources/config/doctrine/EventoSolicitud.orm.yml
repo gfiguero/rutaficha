@@ -1,0 +1,26 @@
+Sig\FichasocialBundle\Entity\EventoSolicitud:
+    type: entity
+    table: EventoSolicitud
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        descripcion:
+            type: string
+            length: '300'
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    manyToOne:
+        solicitud:
+            targetEntity: SolicitudFichaSocial
+        usuario:
+            targetEntity: Usuario
+        tipo:
+            targetEntity: TipoEvento
+    lifecycleCallbacks: {  }

@@ -1,0 +1,58 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+#        in_memory:
+#            memory:
+#                users:
+#                    ryan:  { password: ryanpass, roles: 'ROLE_USER' }
+#                    ivan:  { password: ivanpass, roles: 'ROLE_ADMIN' }
+#                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            anonymous: ~
+
+        login_firewall:
+            pattern:   ^/login$
+            anonymous: ~
+
+        main:
+            pattern:   ^/
+#            anonymous: ~
+            http_basic:
+                realm: "Secured Demo Area"
+            form_login:
+#                login_path: /login
+#                check_path: /login_check
+                always_use_default_target_path: true
+#                default_target_path: /
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                default_target_path: /
+#            logout:
+#                path:   /logout
+#                target: /
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: ROLE_ADMIN }
+        - { path: ^/usuarios, role: ROLE_ADMIN }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        # - { path: ^/, roles: ROLE_ADMIN }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        # Include the following line to also secure the /admin path itself
+        # - { path: ^/admin$, roles: ROLE_ADMIN }

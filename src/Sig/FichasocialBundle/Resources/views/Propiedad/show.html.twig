@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Propiedades{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('propiedades') }}">Propiedades</a></li>
+        <li class="active">Ver Propiedad</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Propiedad ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Calle</dt><dd>{{ entity.calle }}</dd>
+                <dt>Numero</dt><dd>{{ entity.numero }}</dd>
+                <dt>Complemento</dt><dd>{{ entity.complemento }}</dd>
+                <dt>Rol</dt><dd>{{ entity.rol }}</dd>
+                <dt>Fecha de Registro</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Fecha de Actualización</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+            </dl>
+        </div>
+    </div>
+    
+{% endblock %}
+{% block actionbar %}
+    <div class="col-xs-12">
+        <div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('propiedades_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+        </div>
+    </div> 
+{% endblock %}

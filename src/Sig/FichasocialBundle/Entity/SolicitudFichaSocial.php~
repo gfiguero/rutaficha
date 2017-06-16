@@ -1,0 +1,308 @@
+<?php
+
+namespace Sig\FichasocialBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SolicitudFichaSocial
+ */
+class SolicitudFichaSocial
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var \Sig\FichasocialBundle\Entity\Domicilio
+     */
+    private $domicilio;
+
+    /**
+     * @var \Sig\FichasocialBundle\Entity\Persona
+     */
+    private $persona;
+
+    /**
+     * @var \Sig\FichasocialBundle\Entity\EstadoSolicitudFichaSocial
+     */
+    private $estado;
+
+    /**
+     * @var \Sig\FichasocialBundle\Entity\TipoSolicitudFichaSocial
+     */
+    private $tipo;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $rutas;
+
+    /**
+     * @var \Sig\FichasocialBundle\Entity\RutaFichaSocial
+     */
+    private $ruta;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rutas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return SolicitudFichaSocial
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return SolicitudFichaSocial
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return SolicitudFichaSocial
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set domicilio
+     *
+     * @param \Sig\FichasocialBundle\Entity\Domicilio $domicilio
+     * @return SolicitudFichaSocial
+     */
+    public function setDomicilio(\Sig\FichasocialBundle\Entity\Domicilio $domicilio = null)
+    {
+        $this->domicilio = $domicilio;
+
+        return $this;
+    }
+
+    /**
+     * Get domicilio
+     *
+     * @return \Sig\FichasocialBundle\Entity\Domicilio 
+     */
+    public function getDomicilio()
+    {
+        return $this->domicilio;
+    }
+
+    /**
+     * Set persona
+     *
+     * @param \Sig\FichasocialBundle\Entity\Persona $persona
+     * @return SolicitudFichaSocial
+     */
+    public function setPersona(\Sig\FichasocialBundle\Entity\Persona $persona = null)
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
+
+    /**
+     * Get persona
+     *
+     * @return \Sig\FichasocialBundle\Entity\Persona 
+     */
+    public function getPersona()
+    {
+        return $this->persona;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param \Sig\FichasocialBundle\Entity\EstadoSolicitudFichaSocial $estado
+     * @return SolicitudFichaSocial
+     */
+    public function setEstado(\Sig\FichasocialBundle\Entity\EstadoSolicitudFichaSocial $estado = null)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \Sig\FichasocialBundle\Entity\EstadoSolicitudFichaSocial 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param \Sig\FichasocialBundle\Entity\TipoSolicitudFichaSocial $tipo
+     * @return SolicitudFichaSocial
+     */
+    public function setTipo(\Sig\FichasocialBundle\Entity\TipoSolicitudFichaSocial $tipo = null)
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \Sig\FichasocialBundle\Entity\TipoSolicitudFichaSocial 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Add rutas
+     *
+     * @param \Sig\FichasocialBundle\Entity\RutaFichaSocial $rutas
+     * @return SolicitudFichaSocial
+     */
+    public function addRuta(\Sig\FichasocialBundle\Entity\RutaFichaSocial $rutas)
+    {
+        $this->rutas[] = $rutas;
+
+        return $this;
+    }
+
+    /**
+     * Remove rutas
+     *
+     * @param \Sig\FichasocialBundle\Entity\RutaFichaSocial $rutas
+     */
+    public function removeRuta(\Sig\FichasocialBundle\Entity\RutaFichaSocial $rutas)
+    {
+        $this->rutas->removeElement($rutas);
+    }
+
+    /**
+     * Get rutas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRutas()
+    {
+        return $this->rutas;
+    }
+
+    public function getRuta()
+    {
+        return $this->rutas[0];
+    }
+
+
+    /**
+     * @var string
+     */
+    private $notas;
+
+
+    /**
+     * Set notas
+     *
+     * @param string $notas
+     * @return SolicitudFichaSocial
+     */
+    public function setNotas($notas)
+    {
+        $this->notas = $notas;
+
+        return $this;
+    }
+
+    /**
+     * Get notas
+     *
+     * @return string 
+     */
+    public function getNotas()
+    {
+        return $this->notas;
+    }
+}

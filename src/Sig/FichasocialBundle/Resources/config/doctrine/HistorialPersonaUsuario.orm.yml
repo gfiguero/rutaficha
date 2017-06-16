@@ -1,0 +1,28 @@
+Sig\FichasocialBundle\Entity\HistorialPersonaUsuario:
+    type: entity
+    table: HistorialPersonaUsuario
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        descripcion:
+            type: string
+            length: '300'
+        detalle:
+            type: boolean
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    manyToOne:
+        persona:
+            targetEntity: Persona
+        usuario:
+            targetEntity: Usuario
+        tipo:
+            targetEntity: TipoEvento
+    lifecycleCallbacks: {  }

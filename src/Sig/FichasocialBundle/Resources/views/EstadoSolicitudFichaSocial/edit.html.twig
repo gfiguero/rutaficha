@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Estado de Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('estadossolicitudfichasocial') }}">Estados de Solicitud</a></li>
+        <li><a href="{{ path('estadossolicitudfichasocial_show', { 'id': entity.id }) }}">Ver Estado de Solicitud</a></li>
+        <li class="active">Editar Estado de Solicitud</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Estado de Solicitud - Código: {{ entity.codigo }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

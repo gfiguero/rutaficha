@@ -1,0 +1,30 @@
+domicilios:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:index" }
+
+domicilios_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:show" }
+
+domicilios_new:
+    path:     /new/{personaId}
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:new" }
+
+domicilios_create:
+    path:     /create/{personaId}
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:create" }
+    requirements: { _method: post }
+
+domicilios_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:edit" }
+
+domicilios_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:update" }
+    requirements: { _method: post|put }
+
+domicilios_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:Domicilio:delete" }
+    requirements: { _method: post|delete }

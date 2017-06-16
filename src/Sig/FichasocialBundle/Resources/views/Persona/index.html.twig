@@ -1,0 +1,54 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Persona{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Persona</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Buscar Persona</h1>
+        </div>
+         {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-danger" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        <div class="panel-body">
+            {{ form(search_form) }}
+        </div>
+{#}
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Nombre Completo</th>
+                        <th>Fecha de Registro</th>
+                        <th>Ultima Actualización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr class='clickableRow' href="{{ path('personas_show', { 'id': entity.id }) }}">
+                        <td>{{ entity.rut }}</td>
+                        <td>{{ entity.primernombre }} {{ entity.segundonombre }} {{ entity.primerapellido }} {{ entity.segundoapellido }}</td>
+                        <td>{% if entity.createdAt %}{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        <td>{% if entity.updatedAt %}{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{#}
+    </div>
+{% endblock %}
+{#% block actionbar %}
+    <div class="col-xs-12">
+         <div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('personas_new') }}"><span class="glyphicon glyphicon-file"></span> Registrar Persona</a>
+        </div>
+    </div> 
+{% endblock %#}

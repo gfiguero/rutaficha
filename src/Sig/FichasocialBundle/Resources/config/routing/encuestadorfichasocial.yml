@@ -1,0 +1,30 @@
+encuestadores:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:index" }
+
+encuestadores_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:show" }
+
+encuestadores_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:new" }
+
+encuestadores_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:create" }
+    requirements: { _method: post }
+
+encuestadores_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:edit" }
+
+encuestadores_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:update" }
+    requirements: { _method: post|put }
+
+encuestadores_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:EncuestadorFichaSocial:delete" }
+    requirements: { _method: post|delete }

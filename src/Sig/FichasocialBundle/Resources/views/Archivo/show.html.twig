@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Archivo{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('archivos') }}">Archivos</a></li>
+        <li class="active">Ver Archivo</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Archivo ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Codigo</dt><dd>{{ entity.codigo }}</dd>
+                <dt>Createdat</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Updatedat</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Deletedat</dt><dd>{{ entity.deletedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('archivos_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    </div>
+{% endblock %}

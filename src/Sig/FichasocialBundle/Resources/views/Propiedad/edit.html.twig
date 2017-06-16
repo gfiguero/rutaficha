@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Propiedades{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('propiedades') }}">Propiedades</a></li>
+        <li><a href="{{ path('propiedades_show', { 'id': entity.id }) }}">Ver Propiedad</a></li>
+        <li class="active">Editar Propiedad</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Propiedad ID: {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

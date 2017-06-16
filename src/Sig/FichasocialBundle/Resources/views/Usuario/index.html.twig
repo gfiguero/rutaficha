@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Usuario</li>
+    </ol>
+    {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Usuario</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Nombre Completo</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Último Acceso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr class='clickableRow' href="{{ path('usuarios_show', { 'id': entity.id }) }}">
+                        <td>{{ entity.username }}</td>
+                        <td>{{ entity.primernombre }} {{ entity.segundonombre }} {{ entity.primerapellido }} {{ entity.segundoapellido }}</td>
+                        <td>{{ entity.email }}</td>
+                        <td>{{ entity.telefono }}</td>
+                        <td>{% if entity.lastlogin %}{{ entity.lastlogin|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('usuarios_new') }}"><span class="glyphicon glyphicon-file"></span> Nuevo</a>
+    </div>
+{% endblock %}

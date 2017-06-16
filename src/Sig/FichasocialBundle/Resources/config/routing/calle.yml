@@ -1,0 +1,38 @@
+calles:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:Calle:index" }
+
+calles_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:Calle:show" }
+
+calles_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:Calle:new" }
+
+calles_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:Calle:create" }
+    requirements: { _method: post }
+
+calles_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:Calle:edit" }
+
+calles_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:Calle:update" }
+    requirements: { _method: post|put }
+
+calles_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:Calle:delete" }
+    requirements: { _method: post|delete }
+
+calles_search:
+    path:     /search
+    defaults: { _controller: "SigFichasocialBundle:Calle:search" }
+
+calles_get:
+    path:     /get
+    defaults: { _controller: "SigFichasocialBundle:Calle:get" }

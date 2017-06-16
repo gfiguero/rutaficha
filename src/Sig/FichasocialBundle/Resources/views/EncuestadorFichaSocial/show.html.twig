@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Encuestador{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('encuestadores') }}">Encuestadores</a></li>
+        <li class="active">Ver Encuestador</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Encuestador N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Rut</dt><dd>{{ entity.rut }}</dd>
+                <dt>Nombre Completo</dt><dd>{{ entity.primernombre }} {{ entity.segundonombre }} {{ entity.primerapellido }} {{ entity.segundoapellido }}</dd>
+                <dt>Email</dt><dd>{{ entity.email }}</dd>
+                <dt>Celular</dt><dd>{{ entity.celular }}</dd>
+                <dt>Fecha de Registro</dt><dd>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+                <dt>Última Actualización</dt><dd>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</dd>
+            </dl>
+        </div>
+        {% if rutas|length %}
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                     <thead>
+                            <tr>
+                                <th>Correlativo</th>
+                                <th>Encuestador</th>
+                                <th>Fecha de Creación</th>
+                                <th>Última Actualización</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for ruta in rutas %}
+                            <tr class='clickableRow' href="{{ path('rutas_show', { 'id': ruta.id }) }}">
+                                <td>{% if ruta.id %}{{ ruta.id }}{% endif %}</td>
+                                <td>{% if ruta.encuestador %}{{ ruta.encuestador.primerNombre }}{% endif %}</td>
+                                <td>{% if ruta.createdAt %}{{ ruta.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                                <td>{% if ruta.updatedAt %}{{ ruta.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                                <td>{% if ruta.estado %}{{ ruta.estado.nombre }}{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+            </table>
+        {% endif %}
+    </div>
+    
+{% endblock %}
+{% block actionbar %}
+    <div class="col-xs-12">
+        <div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('encuestadores_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+        </div>
+    </div> 
+{% endblock %}

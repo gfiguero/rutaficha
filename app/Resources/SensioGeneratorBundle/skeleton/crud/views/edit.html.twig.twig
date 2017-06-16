@@ -1,0 +1,24 @@
+{% block extends %}
+{{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title %}" }}{{ entity }}{{ "{% endblock %}" }}
+
+{{ "{% block body -%}" }}
+    <ol class="breadcrumb">
+        <li><a href="{{ "{{ path('root') }}" }}">Inicio</a></li>
+        <li><a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}">{{ entity }}</a></li>
+        <li><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity."~ identifier ~" }) }}" }}">Ver {{ entity }}</a></li>
+        <li class="active">Editar {{ entity }}</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar {{ entity }} ID: {{ "{{ entity." ~ identifier ~ " }}" }}</h1>
+        </div>
+        <div class="panel-body">
+        {{ '{{ form(edit_form) }}' }}
+        </div>
+    </div>
+{{ "{% endblock %}" }}
+{% endblock body %}

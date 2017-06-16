@@ -1,0 +1,35 @@
+personas:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:Persona:index" }
+
+personas_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:Persona:show" }
+
+personas_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:Persona:new" }
+
+personas_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:Persona:create" }
+    requirements: { _method: post }
+
+personas_search:
+    path:     /search
+    defaults: { _controller: "SigFichasocialBundle:Persona:search" }
+    requirements: { _method: post }
+
+personas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:Persona:edit" }
+
+personas_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:Persona:update" }
+    requirements: { _method: post|put }
+
+personas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:Persona:delete" }
+    requirements: { _method: post|delete }

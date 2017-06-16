@@ -1,0 +1,42 @@
+{% block extends %}
+{{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title %}" }}{{ entity }}{{ "{% endblock %}" }}
+
+{{ "{% block body -%}" }}
+    <ol class="breadcrumb">
+        <li><a href="{{ "{{ path('root') }}" }}">Inicio</a></li>
+        <li><a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}">{{ entity }}</a></li>
+        <li class="active">Ver {{ entity }}</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>{{ entity }} ID: {{ "{{ entity." ~ identifier ~ " }}" }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+            {%- for field, metadata in fields %}
+
+                {%- if not loop.first %}
+
+                <dt>{{ field|capitalize }}</dt>
+                {%- if metadata.type in ['date', 'datetime'] %}<dd>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|localizeddate(\'full\', \'full\', \'es_ES\', \'America/Santiago\', "d \'de\' LLLL \'de\' Y - HH:mm") }}' }}</dd>
+
+                {%- else %}<dd>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</dd>
+
+                {%- endif %}
+
+                {%- endif %}
+
+            {%- endfor %}
+
+            </dl>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { 'id': entity."~ identifier ~" }) }}" }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+    </div>
+{{ "{% endblock %}" }}
+{% endblock body %}

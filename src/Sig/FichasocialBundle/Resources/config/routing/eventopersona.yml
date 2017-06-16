@@ -1,0 +1,30 @@
+eventospersona:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:index" }
+
+eventospersona_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:show" }
+
+eventospersona_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:new" }
+
+eventospersona_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:create" }
+    requirements: { _method: post }
+
+eventospersona_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:edit" }
+
+eventospersona_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:update" }
+    requirements: { _method: post|put }
+
+eventospersona_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:EventoPersona:delete" }
+    requirements: { _method: post|delete }

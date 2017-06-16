@@ -1,0 +1,89 @@
+body {
+  padding-top: 51px; }
+
+h1, h2, h3 {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.panel .table td {
+  vertical-align: middle; }
+
+.page-header-main {
+  margin: 0 0 20px;
+  border: 0; }
+
+.bootstrap-time {
+  width: 100%; }
+  .bootstrap-time select {
+    display: inline-block;
+    width: auto; }
+
+.bootstrap-date {
+  width: 100%; }
+
+.bootstrap-date select {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px; }
+
+.bootstrap-datetime .bootstrap-time,
+.bootstrap-datetime .bootstrap-date {
+  display: inline-block;
+  width: auto; }
+
+body,html {
+  height:100%; }
+
+#main-body {
+  height:100%;
+  overflow:auto; }
+
+#sidebar-button-new {
+  margin-bottom: 20px; }
+
+
+
+/*
+#sidebar-button-collapse {
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: auto;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  display: block;
+}
+#sidebar-button-collapse .icon-bar {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  display: block;
+  width: 30px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #888888;
+}
+
+@media screen and (min-width: 768px) {
+  #sidebar-button-collapse {
+    display: none; }
+  #sidebar-collapse {
+    display: block;
+  }}*/
+
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+}
+.custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+}
+.custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+}

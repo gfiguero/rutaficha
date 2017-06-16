@@ -1,0 +1,21 @@
+perfil:
+    path:     /show
+    defaults: { _controller: "SigFichasocialBundle:Perfil:show" }
+
+perfil_edit:
+    path:     /edit
+    defaults: { _controller: "SigFichasocialBundle:Perfil:edit" }
+
+perfil_update:
+    path:     /update
+    defaults: { _controller: "SigFichasocialBundle:Perfil:update" }
+    requirements: { _method: post|put }
+
+perfil_password:
+    path:     /password
+    defaults: { _controller: "SigFichasocialBundle:Perfil:password" }
+
+perfil_password_update:
+    path:     /passwordUpdate
+    defaults: { _controller: "SigFichasocialBundle:Perfil:passwordupdate" }
+

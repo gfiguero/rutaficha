@@ -1,0 +1,66 @@
+Sig\FichasocialBundle\Entity\Persona:
+    type: entity
+    table: Persona
+    repositoryClass: Sig\FichasocialBundle\Repository\PersonaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    indexes:
+        name_index:
+            columns: [ primer_nombre, segundo_nombre, primer_apellido, segundo_apellido ]
+    fields:
+        rut:
+            type: string
+            length: '15'
+            unique: true
+        primer_nombre:
+            type: string
+            length: '100'
+        segundo_nombre:
+            type: string
+            length: '100'
+        primer_apellido:
+            type: string
+            length: '100'
+        segundo_apellido:
+            type: string
+            length: '100'
+        email:
+            type: string
+            length: '100'
+            nullable: true
+        celular:
+            type: string
+            length: '100'
+            nullable: true
+        telefono:
+            type: string
+            length: '100'
+            nullable: true
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            nullable: true
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+#    manyToOne:
+#        domicilio:
+#            targetEntity: Propiedad
+#            joinColumn:
+#                name: domicilio_id
+#                referencedColumnName: id
+    lifecycleCallbacks: {  }

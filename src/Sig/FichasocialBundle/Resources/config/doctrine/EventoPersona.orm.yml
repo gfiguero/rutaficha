@@ -1,0 +1,26 @@
+Sig\FichasocialBundle\Entity\EventoPersona:
+    type: entity
+    table: EventoPersona
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        descripcion:
+            type: string
+            length: '300'
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+    manyToOne:
+        persona:
+            targetEntity: Persona
+        usuario:
+            targetEntity: Usuario
+        tipo:
+            targetEntity: TipoEvento
+    lifecycleCallbacks: {  }

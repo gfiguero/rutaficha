@@ -1,0 +1,51 @@
+Sig\FichasocialBundle\Entity\SolicitudFichaSocial:
+    type: entity
+    table: SolicitudFichaSocial
+    repositoryClass: Sig\FichasocialBundle\Repository\SolicitudFichaSocialRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        notas:
+            type: text
+            nullable: true
+        folio:
+            type: string
+            length: '100'
+            nullable: true
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            nullable: true
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    manyToOne:
+        domicilio:
+            targetEntity: Domicilio
+        persona:
+            targetEntity: Persona
+        estado:
+            targetEntity: EstadoSolicitudFichaSocial
+        tipo:
+            targetEntity: TipoSolicitudFichaSocial
+        archivo:
+            targetEntity: Archivo
+    manyToMany:
+        rutas:
+            targetEntity: RutaFichaSocial
+            mappedBy: solicitudes
+    lifecycleCallbacks: {  }

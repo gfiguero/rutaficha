@@ -1,0 +1,43 @@
+rutas:
+    path:     /{codigo}/status/{pagina}/pagina
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:index", codigo: 'R00', pagina: '1' }
+
+rutas_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:show" }
+
+rutas_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:new" }
+
+rutas_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:create" }
+    requirements: { _method: post }
+
+rutas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:edit" }
+
+rutas_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:update" }
+    requirements: { _method: post|put }
+
+rutas_execute:
+    path:     /{id}/execute
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:execute" }
+    requirements: { _method: post|put }
+
+rutas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:delete" }
+    requirements: { _method: post|delete }
+
+rutas_pdf:
+    path:     /{id}/pdf
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:pdf", _format: 'pdf' }
+
+rutas_pdf_test:
+    path:     /{id}/pdftest
+    defaults: { _controller: "SigFichasocialBundle:RutaFichaSocial:pdftest" }

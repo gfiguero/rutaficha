@@ -1,0 +1,39 @@
+Sig\FichasocialBundle\Entity\EstadoRutaFichaSocial:
+    type: entity
+    table: EstadoRutaFichaSocial
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: '100'
+        codigo:
+            type: string
+            length: '10'
+        descripcion:
+            type: text
+            length: null
+        locked:
+            type: boolean
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            nullable: true
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    lifecycleCallbacks: {  }

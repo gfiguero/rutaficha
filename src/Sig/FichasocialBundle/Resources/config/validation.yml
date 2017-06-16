@@ -1,0 +1,39 @@
+Sig\FichasocialBundle\Entity\Propiedad:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [ rol ]
+            message: 'El Rol ya se encuentra registrado en el sistema.'
+    properties:
+        rol:
+            - NotBlank: ~
+        calle:
+            - NotBlank: ~
+        numero:
+            - NotBlank: ~
+
+Sig\FichasocialBundle\Entity\Persona:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [ rut ]
+            message: 'El RUT ya se encuentra registrado en el sistema.'
+    properties:
+        rut:
+            - NotBlank: ~
+            - Sig\FichasocialBundle\Validator\Constraints\Rut: ~
+        primer_nombre:
+            - NotBlank: ~
+        segundo_nombre:
+            - NotBlank: ~
+        primer_apellido:
+            - NotBlank: ~
+        segundo_apellido:
+            - NotBlank: ~
+
+Sig\FichasocialBundle\Entity\Usuario:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [ username ]
+            message: 'El nombre de usuario ya se encuentra registrado en el sistema.'
+    properties:
+        username:
+            - NotBlank: ~

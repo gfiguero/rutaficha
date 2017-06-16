@@ -1,0 +1,30 @@
+tipossolicitudfichasocial:
+    path:     /
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:index" }
+
+tipossolicitudfichasocial_show:
+    path:     /{id}/show
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:show" }
+
+tipossolicitudfichasocial_new:
+    path:     /new
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:new" }
+
+tipossolicitudfichasocial_create:
+    path:     /create
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:create" }
+    requirements: { _method: post }
+
+tipossolicitudfichasocial_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:edit" }
+
+tipossolicitudfichasocial_update:
+    path:     /{id}/update
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:update" }
+    requirements: { _method: post|put }
+
+tipossolicitudfichasocial_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SigFichasocialBundle:TipoSolicitudFichaSocial:delete" }
+    requirements: { _method: post|delete }

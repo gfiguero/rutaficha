@@ -1,0 +1,69 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Ruta{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('rutas') }}">Rutas</a></li>
+        <li><a href="{{ path('rutas_show', { 'id': entity.id }) }}">Ver Ruta</a></li>
+        <li class="active">Editar Ruta</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Ruta N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+            {#{ form_row(edit_form.estado) }#}
+            {{ form_row(edit_form.encuestador) }}
+            {% if edit_form.solicitudes|length > 0 %}
+            <div class="form-group">
+                {{ form_label(edit_form.solicitudes) }}
+                <div class="col-lg-10">
+                     <table class="records_list table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Solicitante</th>
+                                <th>Fecha de Registro</th>
+                                {#<th>Estado</th>#}
+                                <th>Tipo</th>
+                                <th>Domicilio</th>
+                                <th>Unidad Vecinal</th>
+                                <th>Seleccionado</th>
+                            </tr>
+                        </thead>
+                        {% for child in edit_form.solicitudes %}
+                            {% set index = child.vars.value %}
+                            <tbody>
+                            <tr>
+                                <td>{% if choices[index].persona %}{{ choices[index].persona.primerNombre }} {{ choices[index].persona.primerApellido }}{% endif %}</td>
+                                <td>{% if choices[index].createdAt %}{{ choices[index].createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                                {#<td>{% if choices[index].estado %}{{ choices[index].estado.codigo }} - {{ choices[index].estado.nombre }}{% endif %}</td>#}
+                                <td>{% if choices[index].tipo %}{{ choices[index].tipo.nombre }}{% endif %}</td>
+                                <td>{% if choices[index].domicilio.calle %}{{ choices[index].domicilio.calle }}{% endif %}
+                                                    {% if choices[index].domicilio.numero %} {{ choices[index].domicilio.numero }}{% endif %}
+                                                    {% if choices[index].domicilio.poblacion %} {{ choices[index].domicilio.poblacion }}{% endif %}
+                                                    {% if choices[index].domicilio.edificio %} {{ choices[index].domicilio.edificio }}{% endif %}
+                                                    {% if choices[index].domicilio.departamento %} {{ choices[index].domicilio.departamento }}{% endif %}
+                                                    {% if choices[index].domicilio.casa %} {{ choices[index].domicilio.casa }}{% endif %}
+                                                    {% if choices[index].domicilio.chacra %} {{ choices[index].domicilio.chacra }}{% endif %}
+                                                    {% if choices[index].domicilio.parcela %} {{ choices[index].domicilio.parcela }}{% endif %}
+                                                    {% if choices[index].domicilio.paradero %} {{ choices[index].domicilio.paradero }}{% endif %}
+                                                    {% if choices[index].domicilio.sector %} {{ choices[index].domicilio.sector }}{% endif %}
+                                                    {#{% if choices[index].domicilio.rol %} {{ choices[index].domicilio.rol }} {% endif %}</td>#}
+                                <td>{% if choices[index].domicilio.unidad %}{{ choices[index].domicilio.unidad }}{% endif %}</td>
+                                <td>{{ form_widget(child) }}</td>       
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+            {% do edit_form.solicitudes.setRendered %}
+            {{ form_rest(edit_form) }}
+            {#{ form(edit_form) }#}
+        </div>
+    </div>
+{% endblock %}
+

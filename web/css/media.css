@@ -1,0 +1,16 @@
+@media (min-width: 1200px) {
+  .panelLeft{
+    padding-left: 0 !important; }
+  .panelRight{
+    padding-right: 0 !important; }}
+
+@media (min-width: 768px) {
+  #sidebarDropdownFilter{
+    display: none;
+  }}
+
+@media (max-width: 768px) {
+  #sidebarFilter{
+    display: none;
+}
+

@@ -1,0 +1,97 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Ruta{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Rutas</li>
+    </ol>
+
+    </div>
+
+    <div class="col-sm-3  col-lg-2">
+
+        <div class="btn-group btn-group-justified" role="group" style="margin-bottom: 10px;">
+            <a type="button" class="btn btn-success btn-lg" href="{{ path('rutas_new') }}">Nueva Ruta</a>
+        </div>
+
+        <ul class="nav nav-pills nav-stacked">
+            <li {% if 'R00' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('rutas', { 'codigo': 'R00' }) }}">Creadas</a></li>
+            {#<li {% if 'R01' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('rutas', { 'codigo': 'R01' }) }}">Despachadas</a></li>#}
+            <li {% if 'R05' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('rutas', { 'codigo': 'R05' }) }}">Asignadas</a></li>
+            <li {% if 'R10' in app.request.attributes.get('codigo') %}class="active"{% endif %} ><a href="{{ path('rutas', { 'codigo': 'R10' }) }}">Terminadas</a></li>
+        </ul>
+    </div>
+
+
+    <div class="col-sm-9 col-lg-10">
+
+        {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>Rutas
+                    {% if 'R00' in app.request.attributes.get('codigo') %}creadas (aún no salen a terreno){% endif %}
+                    {#{% if 'R01' in app.request.attributes.get('codigo') %}despachadas {% endif %}#}
+                    {% if 'R05' in app.request.attributes.get('codigo') %}asignadas (encuestador en terreno){% endif %}
+                    {% if 'R10' in app.request.attributes.get('codigo') %}terminadas (cada solicitud tiene resolución){% endif %}
+                </h1>
+                {% if not pagination|length %}
+                <h5>
+
+                    No hay rutas 
+                    {% if 'R00' in app.request.attributes.get('codigo') %}creadas. {% endif %}
+                    {#{% if 'R01' in app.request.attributes.get('codigo') %}despachadas. {% endif %}#}
+                    {% if 'R05' in app.request.attributes.get('codigo') %}asignadas. {% endif %}
+                    {% if 'R10' in app.request.attributes.get('codigo') %}terminadas. {% endif %}
+                <h5>
+                {% endif %}
+            </div>
+            <div class="table-responsive">
+                {% if pagination|length %}
+                    <table class="records_list table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Correlativo</th>
+                                {% if 'R00' not in app.request.attributes.get('codigo') %}<th>Encuestador</th>{% endif %}
+                                <th>Fecha de Creación</th>
+                                <th>Última Actualización</th>
+                                <th>N° Solicitudes</th>
+                                {#<th>Estado</th>#}
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in pagination %}
+                            <tr class='clickableRow' href="{{ path('rutas_show', { 'id': entity.id }) }}">
+                                <td>{% if entity.id %}{{ entity.id }}{% endif %}</td>
+                                {% if 'R00' not in app.request.attributes.get('codigo') %}<td>{% if entity.encuestador %}{{ entity.encuestador.primerNombre }}{% endif %}</td>{% endif %}
+                                <td>{% if entity.createdAt %}{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                                <td>{% if entity.updatedAt %}{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                                <td>{{ entity.solicitudes.count }}</td>
+                                {#<td>{% if entity.estado %}{{ entity.estado.nombre }}{% endif %}</td>#}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+            <div class="panel-footer">
+                <div class="pull-right">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>   
+        {#<div class="btn-group-lg pull-right">
+            <a class="btn btn-primary" href="{{ path('rutas_new') }}"><span class="glyphicon glyphicon-file"></span> Nueva Ruta</a>
+        </div>#}
+    </div>
+{% endblock %}
+
+
+

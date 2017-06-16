@@ -1,0 +1,88 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('solicitudesfichasocial') }}">Solicitud</a></li>
+        <li class="active">Ver Solicitud</li>
+    </ol>
+
+     {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Solicitud N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal dl-horizontal-sm dl-horizontal-md dl-horizontal-lg">
+                <dt>Solicitante:</dt><dd><a href="{{ path('personas_show', { 'id': entity.persona.id }) }}">{{ entity.persona.primernombre }} {{ entity.persona.primerapellido }}</a></dd>
+                <dt>Rut:</dt><dd>{{ entity.persona.rut }}</dd>
+                <dt>Domicilio de Solicitud:</dt><dd>{% if entity.domicilio.calle %}{{ entity.domicilio.calle }}{% endif %}
+                                                    {% if entity.domicilio.numero %} {{ entity.domicilio.numero }}{% endif %}
+                                                    {% if entity.domicilio.poblacion %} {{ entity.domicilio.poblacion }}{% endif %}
+                                                    {% if entity.domicilio.edificio %} {{ entity.domicilio.edificio }}{% endif %}
+                                                    {% if entity.domicilio.departamento %} {{ entity.domicilio.departamento }}{% endif %}
+                                                    {% if entity.domicilio.casa %} {{ entity.domicilio.casa }}{% endif %}
+                                                    {% if entity.domicilio.chacra %} {{ entity.domicilio.chacra }}{% endif %}
+                                                    {% if entity.domicilio.parcela %} {{ entity.domicilio.parcela }}{% endif %}
+                                                    {% if entity.domicilio.paradero %} {{ entity.domicilio.paradero }}{% endif %}
+                                                    {% if entity.domicilio.sector %} {{ entity.domicilio.sector }}{% endif %}</dd>
+                <dt>Rol Domicilio:</dt><dd>{% if entity.domicilio.rol %}{{ entity.domicilio.rol }}{% else %}No tiene un rol especificado{% endif %}</dd>
+                <dt>Tipo de Solicitud:</dt><dd>{{ entity.tipo.nombre}}</dd>
+                <dt>Fecha de ingreso de Solicitud:</dt><dd>{% if entity.createdAt %}{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</dd>
+                <dt>Última Actualización:</dt><dd>{% if entity.updatedAt %}{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</dd>
+                {% if entity.estado %}<dt>Estado:</dt><dd>{{ entity.estado.codigo }} - {{ entity.estado.nombre }}</dd>{% endif %}
+                <dt>Ruta Asignada:</dt><dd>{% if entity.ruta %}<a href="{{ path('rutas_show', { 'id': entity.ruta.id }) }}">N° {{entity.ruta.id}}</a>{% else %}No tiene una ruta asignada{% endif %}</dd>
+                <dt>Notas:</dt><dd>{% if entity.notas %}{{ entity.notas|nl2br }}{% else %}No hay notas.{% endif %}</dd>
+                {% if entity.folio %}<dt>Folio:</dt><dd>{{ entity.folio }}</dd>{% endif %}
+                {% if entity.archivo %}<dt>Archivo:</dt><dd>{{ entity.archivo.codigo }}</dd>{% endif %}
+            </dl>
+        </div>
+
+        
+        <div class="panel-footer">
+            <div class="btn-group-lg pull-right">
+                {% if entity.estado %}{% if entity.estado.codigo == 'P14' and not entity.archivo %}
+                <a class="btn btn-warning" href="{{ path('solicitudesfichasocial_foil', { 'id': entity.id }) }}">Asignar folio y archivar</a>
+                {% endif %}{% endif %}
+                <a class="btn btn-primary" href="{{ path('solicitudesfichasocial_edit', { 'id': entity.id }) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+    {% if eventos|length %}
+            <div class="panel-heading nopadding" style="border-top: 1px solid #dddddd;">
+                <h1>Historial de eventos</h1>
+            </div>
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Tipo de evento</th>
+                        <th>Descripción</th>
+                        <th>Fecha del evento</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for evento in eventos %}
+                    <tr>
+                        <td>{{ evento.tipo.nombre }}</td>
+                        <td>{{ evento.descripcion }}</td>
+                        <td>{% if evento.createdAt %}{{ evento.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        <td>{{ evento.usuario }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %} 
+
+
+

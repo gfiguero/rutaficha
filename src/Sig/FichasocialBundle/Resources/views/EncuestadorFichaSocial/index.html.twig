@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Encuestadores{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li class="active">Encuestadores</li>
+    </ol>
+    {% for flashMessage in app.session.flashbag.get('noticia') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+    {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Encuestadores</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Nombre Completo</th>
+                        <th>Email</th>
+                        <th>Celular</th>
+                        <th>Fecha de Registro</th>
+                        <th>Última Actualización</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr class='clickableRow' href="{{ path('encuestadores_show', { 'id': entity.id }) }}">
+                        <td>{{ entity.rut }}</td>
+                        <td>{{ entity.primernombre }} {{ entity.segundonombre }} {{ entity.primerapellido }} {{ entity.segundoapellido }}</td>
+                        <td>{{ entity.email }}</td>
+                        <td>{{ entity.celular }}</td>
+                        <td>{% if entity.createdAt %}{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        <td>{% if entity.updatedAt %}{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y - HH:mm") }}{% endif %}</td>
+                        
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ path('encuestadores_new') }}"><span class="glyphicon glyphicon-file"></span> Nuevo</a>
+    </div>
+{% endblock %}

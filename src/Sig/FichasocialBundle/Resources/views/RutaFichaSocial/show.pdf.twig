@@ -1,0 +1,46 @@
+<pdf>
+    <dynamic-page>
+        <h1>Ruta N° {{ entity.id }}</h1>
+        Fecha de Creación: <b>{{ entity.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</b><br />
+        Última Actualización: <b>{{ entity.updatedAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "d 'de' LLLL 'de' Y - HH:mm") }}</b><br />
+        Encuestador: <b>{% if entity.encuestador %}{{ entity.encuestador.nombrecompleto }}{% else %}No tiene encuestador asignado{% endif %}</b><br />
+        N° Solicitudes: <b>{% if entity.solicitudes.count %}{{ entity.solicitudes.count}}{% else %}No hay solicitudes asignadas a la ruta{% endif %}</b><br /><br />
+        {% if entity.solicitudes.count %}
+        <div>
+            <table>
+                <tr>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Solicitante</td>
+                    <!--<td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Fecha de Registro</td>-->
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Tipo</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Población</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Domicilio</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Unidad Vecinal</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Celular o [Teléfono fijo]</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">Resultado</td>
+                </tr>
+                {% for solicitud in solicitudes %}
+                <tr>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">{% if solicitud.persona %}{{ solicitud.persona.primernombre }} {{ solicitud.persona.primerapellido }}{% endif %}</td>
+                    <!--<td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">{% if solicitud.createdAt %}{{ solicitud.createdAt|localizeddate('full', 'full', 'es_ES', 'America/Santiago', "dd-LLL-Y HH:mm") }}{% endif %}</td>-->
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">{% if solicitud.tipo %}{{ solicitud.tipo.nombre }}{% endif %}</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">{% if solicitud.domicilio %}{{ solicitud.domicilio.poblacion }}{% endif %}</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">
+                        {% if solicitud.domicilio.calle %}{{ solicitud.domicilio.calle }}{% endif %}
+                        {% if solicitud.domicilio.numero %} {{ solicitud.domicilio.numero }}{% endif %}
+                        {% if solicitud.domicilio.edificio %} {{ solicitud.domicilio.edificio }}{% endif %}
+                        {% if solicitud.domicilio.departamento %} {{ solicitud.domicilio.departamento }}{% endif %}
+                        {% if solicitud.domicilio.casa %} {{ solicitud.domicilio.casa }}{% endif %}
+                        {% if solicitud.domicilio.chacra %} {{ solicitud.domicilio.chacra }}{% endif %}
+                        {% if solicitud.domicilio.parcela %} {{ solicitud.domicilio.parcela }}{% endif %}
+                        {% if solicitud.domicilio.paradero %} {{ solicitud.domicilio.paradero }}{% endif %}
+                        {% if solicitud.domicilio.sector %} {{ solicitud.domicilio.sector }}{% endif %}</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">{% if solicitud.domicilio %}{{ solicitud.domicilio.unidad }}{% endif %}</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4">{% if solicitud.persona.celular %}{{ solicitud.persona.celular }}{% endif %}{% if solicitud.persona.telefono %}<br />[{{ solicitud.persona.telefono }}]{% endif %}</td>
+                    <td padding-top="2" padding-bottom="4" padding-left="4" padding-right="4"></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+    </dynamic-page>
+</pdf>

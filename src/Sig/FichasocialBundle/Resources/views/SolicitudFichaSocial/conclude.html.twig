@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('solicitudesfichasocial') }}">Solicitud</a></li>
+        <li><a href="{{ path('solicitudesfichasocial_show', { 'id': entity.id }) }}">Ver Solicitud</a></li>
+        <li class="active">Resolución de Solicitud</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Resolución para Solicitud N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-lg-2">Nombre</label>
+                    <div class="col-lg-10"><input type="text" value="{{ entity.persona.primernombre }} {{ entity.persona.segundonombre }} {{ entity.persona.primerapellido }} {{ entity.persona.segundoapellido }}" class="form-control" readonly></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">Domicilio</label>
+                    <div class="col-lg-10">
+<input type="text" value="
+{% if entity.domicilio.calle %}{{ entity.domicilio.calle }}{% endif %}
+{% if entity.domicilio.numero %} {{ entity.domicilio.numero }}{% endif %}
+{% if entity.domicilio.poblacion %} {{ entity.domicilio.poblacion }}{% endif %}
+{% if entity.domicilio.edificio %} {{ entity.domicilio.edificio }}{% endif %}
+{% if entity.domicilio.departamento %} {{ entity.domicilio.departamento }}{% endif %}
+{% if entity.domicilio.casa %} {{ entity.domicilio.casa }}{% endif %}
+{% if entity.domicilio.chacra %} {{ entity.domicilio.chacra }}{% endif %}
+{% if entity.domicilio.parcela %} {{ entity.domicilio.parcela }}{% endif %}
+{% if entity.domicilio.paradero %} {{ entity.domicilio.paradero }}{% endif %}
+{% if entity.domicilio.sector %} {{ entity.domicilio.sector }}{% endif %}
+" class="form-control" readonly></div>
+                </div>
+            </form>
+        {{ form(conclude_form) }}
+        </div>
+    </div>
+{% endblock %}

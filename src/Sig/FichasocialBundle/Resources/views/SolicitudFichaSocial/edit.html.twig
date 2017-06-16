@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Solicitud{% endblock %}
+
+{% block body -%}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('root') }}">Inicio</a></li>
+        <li><a href="{{ path('solicitudesfichasocial') }}">Solicitud</a></li>
+        <li><a href="{{ path('solicitudesfichasocial_show', { 'id': entity.id }) }}">Ver Solicitud</a></li>
+        <li class="active">Editar Solicitud</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading nopadding">
+            <h1>Editar Solicitud N° {{ entity.id }}</h1>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-lg-2">Nombre</label>
+                    <div class="col-lg-10"><input type="text" value="{{ entity.persona.primernombre }} {{ entity.persona.segundonombre }} {{ entity.persona.primerapellido }} {{ entity.persona.segundoapellido }}" class="form-control" readonly></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-2">Domicilio</label>
+                    <div class="col-lg-10"><input type="text" value="{{ entity.domicilio.calle }}, {{ entity.domicilio.numero }}" class="form-control" readonly></div>
+                </div>
+            </form>
+        {{ form(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

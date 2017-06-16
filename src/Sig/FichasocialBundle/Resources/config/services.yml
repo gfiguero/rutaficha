@@ -1,0 +1,5 @@
+services:
+#    sig_fichasocial.change_password.form.type:
+#        class: Sig\FichasocialBundle\Form\Type\ChangePasswordFormType
+#        tags:
+#            - { name: form.type, alias: sig_fichasocial_change_password }

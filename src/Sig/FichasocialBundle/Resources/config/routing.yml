@@ -1,0 +1,78 @@
+sig_fichasocial_archivos:
+    resource: "@SigFichasocialBundle/Resources/config/routing/archivo.yml"
+    prefix:   /archivos
+
+sig_fichasocial_eventospersona:
+    resource: "@SigFichasocialBundle/Resources/config/routing/eventopersona.yml"
+    prefix:   /eventospersona
+
+sig_fichasocial_eventossolicitud:
+    resource: "@SigFichasocialBundle/Resources/config/routing/eventosolicitud.yml"
+    prefix:   /eventossolicitud
+
+sig_fichasocial_procesosolicitud:
+    resource: "@SigFichasocialBundle/Resources/config/routing/procesosolicitud.yml"
+    prefix:   /procesosolicitud
+
+sig_fichasocial_tiposevento:
+    resource: "@SigFichasocialBundle/Resources/config/routing/tipoevento.yml"
+    prefix:   /tiposevento
+
+sig_fichasocial_historialpersonausuario:
+    resource: "@SigFichasocialBundle/Resources/config/routing/historialpersonausuario.yml"
+    prefix:   /historialpersonausuario
+
+sig_fichasocial_usuarios:
+    resource: "@SigFichasocialBundle/Resources/config/routing/usuario.yml"
+    prefix:   /usuarios
+
+sig_fichasocial_perfil:
+    resource: "@SigFichasocialBundle/Resources/config/routing/perfil.yml"
+    prefix:   /perfil
+
+sig_fichasocial_estadosruta:
+    resource: "@SigFichasocialBundle/Resources/config/routing/estadorutafichasocial.yml"
+    prefix:   /estadosruta
+
+sig_fichasocial_rutas:
+    resource: "@SigFichasocialBundle/Resources/config/routing/rutafichasocial.yml"
+    prefix:   /rutas
+
+sig_fichasocial_tipossolicitudfichasocial:
+    resource: "@SigFichasocialBundle/Resources/config/routing/tiposolicitudfichasocial.yml"
+    prefix:   /tipossolicitudfichasocial
+
+sig_fichasocial_encuestadores:
+    resource: "@SigFichasocialBundle/Resources/config/routing/encuestadorfichasocial.yml"
+    prefix:   /encuestadores
+
+sig_fichasocial_domicilios:
+    resource: "@SigFichasocialBundle/Resources/config/routing/domicilio.yml"
+    prefix:   /domicilios
+
+sig_fichasocial_direcciones:
+    resource: "@SigFichasocialBundle/Resources/config/routing/direccion.yml"
+    prefix:   /direcciones
+
+sig_fichasocial_estadossolicitudfichasocial:
+    resource: "@SigFichasocialBundle/Resources/config/routing/estadosolicitudfichasocial.yml"
+    prefix:   /estadossolicitudfichasocial
+
+sig_fichasocial_solicitudesfichasocial:
+    resource: "@SigFichasocialBundle/Resources/config/routing/solicitudfichasocial.yml"
+    prefix:   /solicitudesfichasocial
+
+sig_fichasocial_personas:
+    resource: "@SigFichasocialBundle/Resources/config/routing/persona.yml"
+    prefix:   /personas
+
+sig_fichasocial_propiedades:
+    resource: "@SigFichasocialBundle/Resources/config/routing/propiedad.yml"
+    prefix:   /propiedades
+
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /solicitudesfichasocial/S00/status/1/pagina
+        permanent: true

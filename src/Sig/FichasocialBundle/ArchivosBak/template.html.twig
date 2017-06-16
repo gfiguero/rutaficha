@@ -1,0 +1,110 @@
+{% extends '::genericbase.html.twig' %}
+
+{% use '::iexplorer.html.twig' with iexplorer as base_iexplorer %}
+
+{% use '::stylesheet.html.twig' with stylesheet as base_stylesheet %}
+
+{% use '::navigation.html.twig' with navigation as base_navigation %}
+
+{% use '::header.html.twig' with header as base_header %}
+
+{% use '::main.html.twig' with main as base_main %}
+
+{% use '::footer.html.twig' with footer as base_footer %}
+
+{% use '::javascript.html.twig' with javascript as base_javascript %}
+
+{% block iexplorer %} {{ block('base_iexplorer') }} {% endblock %}
+
+{% block stylesheet %} {{ block('base_stylesheet') }} {% endblock %}
+
+{% block navigation %} {{ block('base_navigation') }} {% endblock %}
+
+{% block header %} {{ block('base_header') }} {% endblock %}
+
+{% block main %} {{ block('base_main') }} {% endblock %}
+
+{% block footer %} {{ block('base_footer') }} {% endblock %}
+
+{% block javascript %} {{ block('base_javascript') }} {% endblock %}
+
+{% block iexplorer %}
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+{% endblock %}
+
+{% block stylesheet %}
+    <link href="{{ asset('css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/jquery-ui.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/media.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block navigation %}
+  <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{#{ path('root') }#}">Ficha Social</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav">
+          {# <li {% if app.request.attributes.get('_route') starts with 'home' %}class="active"{% endif %} ><a href="../home">Inicio</a></li> #}
+          <li {% if 'calles' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('calles') }}">Calles</a></li>
+          {#<li {% if 'propiedades' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('propiedades') }}">Propiedades</a></li>#}
+          {#<li {% if 'personas' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('personas') }}">Personas</a></li>#}
+          {#<li {% if 'solicitudes' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('solicitudes') }}">Solicitudes</a></li>#}
+          {#<li {% if 'rutas' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('rutas') }}">Rutas</a></li>#}
+          {#<li {% if 'encuestadores' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('encuestadores') }}">Encuestadores</a></li>#}
+          {#<li {% if 'estadossolicitud' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('estadossolicitud') }}">Estados de Solicitud</a></li>#}
+          {#<li {% if 'estadosruta' in app.request.attributes.get('_route') %}class="active"{% endif %} ><a href="{{ path('estadosruta') }}">Estados de Ruta</a></li>#}
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="">Link</a></li>
+          {# <li><a href="../contacto">Contacto</a></li> #}
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </header>
+
+{% endblock %}
+
+{% block header %}
+  <div class="page-header"></div>
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <div class="row">
+      {% block sidebar %}
+        <div class="col-md-12">
+          {% block body %}{% endblock %}
+        </div>
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascript %}
+  <script src="{{ asset('js/jquery.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui-1.11.2/jquery-ui.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.js') }}"></script>
+  <script src="{{ asset('js/jquery.Rut.js') }}"></script>
+  <script src="{{ asset('js/autocompleter.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

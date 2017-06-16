@@ -1,0 +1,66 @@
+{% block extends %}
+{{ "{% extends '::base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title %}" }}{{ entity }}{{ "{% endblock %}" }}
+
+{{ "{% block body -%}" }}
+    <ol class="breadcrumb">
+        <li><a href="{{ "{{ path('root') }}" }}">Inicio</a></li>
+        <li class="active">{{ entity }}</li>
+    </ol>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>{{ entity }}</h1>
+        </div>
+        <div class="table-responsive">
+            <table class="records_list table table-striped table-hover">
+                <thead>
+                    {%- for field, metadata in fields %}
+
+                        {%- if loop.first %}
+
+                    <tr>
+
+                        {%- else %}
+
+                        <th>{{ field|capitalize }}</th>
+
+                        {%- endif %}
+
+                    {%- endfor %}
+
+                    </tr>
+                </thead>
+                <tbody>
+                {{ '{% for entity in entities %}' }}
+                {%- for field, metadata in fields %}
+
+                    {%- if loop.first %}
+
+                    <tr class='clickableRow' href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { 'id': entity."~ identifier ~" }) }}" }}">
+
+                    {%- elseif metadata.type in ['date', 'datetime'] %}
+
+                        <td>{{ '{% if entity.' ~ field|replace({'_': ''}) ~ ' %}{{ entity.' ~ field|replace({'_': ''}) ~ '|localizeddate(\'full\', \'full\', \'es_ES\', \'America/Santiago\', "dd-LLL-Y - HH:mm") }}{% endif %}' }}</td>
+
+                    {%- else %}
+
+                        <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                    {%- endif %}
+
+                {%- endfor %}
+
+                    </tr>
+                {{ '{% endfor %}' }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="btn-group-lg pull-right">
+        <a class="btn btn-primary" href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}"><span class="glyphicon glyphicon-file"></span> Nuevo</a>
+    </div>
+{{ "{% endblock %}" }}
+{% endblock body %}
